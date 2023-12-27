@@ -96,11 +96,12 @@ def main():
         sys.exit(9)
 
     if "open_account" in nitter_token_response.json()["subtasks"][0]:
-        nitter_token = [].append(nitter_token_response.json()["subtasks"][0]["open_account"])
+        nitter_token = nitter_token_response.json()["subtasks"][0]["open_account"]
         logger.debug("nitter_token: \n" + json.dumps(nitter_token, indent=4))
+        nitter_token_list = [nitter_token]
 
         with open('/src/output/guest_accounts.json', 'w') as f:
-            f.write(json.dumps(nitter_token, indent=4))
+            f.write(json.dumps(nitter_token_list, indent=4))
 
         logger.debug("Success: nitter-token updated")
 
